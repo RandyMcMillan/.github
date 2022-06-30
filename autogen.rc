@@ -14,14 +14,14 @@ gen_config_pre() {
 }
 
 gen_config_post() {
-    step "convert optlib/*.ctags to optlib/*.c"
-    for input in optlib/*.ctags
-    do
-        output="${input%.ctags}.c"
-        printf "${COLOR_GREEN}perl misc/optlib2c %-27s > %s${COLOR_OFF}\n" "$input" "$output"
-        perl ./misc/optlib2c "$input" > "$output" || return 1
-    done
-    
+    # step "convert optlib/*.ctags to optlib/*.c"
+    # for input in optlib/*.ctags
+    # do
+    #     output="${input%.ctags}.c"
+    #     printf "${COLOR_GREEN}perl misc/optlib2c %-27s > %s${COLOR_OFF}\n" "$input" "$output"
+    #     perl ./misc/optlib2c "$input" > "$output" || return 1
+    # done
+
     __die_if_no_c_compiler
 
     step "check if $HOST_CC works."
