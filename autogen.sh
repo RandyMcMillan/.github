@@ -2,7 +2,7 @@
 
 # https://github.com/leleliu008/autogen.sh
 
-
+git clone https://github.com/arithy/packcc.git misc/packcc || true
 
 _0=$0
 
