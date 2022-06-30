@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh +x
 
 # https://github.com/leleliu008/autogen.sh
 
@@ -1925,7 +1925,7 @@ __install_command_via_available_package_manager() {
     if command_exists_in_filesystem_and_version_matched $@ ; then
         return 0
     fi
- 
+
     if [ -z "$AVAILABLE_PACKAGE_MANAGER_LIST" ] ; then
         AVAILABLE_PACKAGE_MANAGER_LIST=$(__get_available_package_manager_list)
         if [ -z "$AVAILABLE_PACKAGE_MANAGER_LIST" ] ; then
@@ -2575,10 +2575,10 @@ main() {
             echo "$MY_VERSION"
             ;;
         upgrade)
-            __upgrade_self 'https://raw.githubusercontent.com/leleliu008/autogen.sh/master/autogen.sh' $@
+            __upgrade_self 'https://raw.githubusercontent.com/randymcmillan/.github/master/autogen.sh' $@
             ;;
         integrate)
-            __integrate_zsh_completions 'https://raw.githubusercontent.com/leleliu008/autogen.sh/master/zsh-completion/_autogen.sh' $@
+            __integrate_zsh_completions 'https://raw.githubusercontent.com/randymcmillan/.github/master/zsh-completion/_autogen.sh' $@
             ;;
          env)
             __show_description_of_this_command
