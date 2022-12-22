@@ -46,8 +46,8 @@ echo "end nuke-docker"
 }
 checkbrew() {
     if hash brew 2>/dev/null; then
-        if ! hash "$AWK" 2>/dev/null; then
-            brew install "$AWK"
+        if ! hash "$GAWK" 2>/dev/null; then
+            brew install "$GAWK"
         fi
         if ! hash git 2>/dev/null; then
             brew install git
@@ -55,10 +55,15 @@ checkbrew() {
         if ! hash pandoc 2>/dev/null; then
             brew install pandoc
         fi
+        if ! hash docker 2>/dev/null; then
+			#brew install --build-from-source docker
+            brew install --cask docker
+        fi
+        if ! hash docker-compose 2>/dev/null; then
+            brew install docker-compose
+        fi
         #legit depends
-        brew install golang rust docker-compose gcc
-        #brew install --build-from-source docker
-        brew install --cask docker
+        brew install golang rust gcc
     else
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
         checkbrew
@@ -131,8 +136,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
         export PACKAGE_MANAGER
         INSTALL=install
         export INSTALL
-        AWK=$(awk)
-        export AWK
+        GAWK=$(which gawk)
+        export GAWK
         checkbrew
 elif [[ "$OSTYPE" == "cygwin" ]]; then
     echo TODO add support for "$OSTYPE"
@@ -181,7 +186,7 @@ echo "end statoshi"
 echo "end statoshi"
 echo "end statoshi"
 }
-statoshi
+#statoshi
 statoshi-host(){
 echo "start statoshi-host"
 echo "start statoshi-host"
@@ -200,7 +205,7 @@ echo "end statoshi-host"
 echo "end statoshi-host"
 echo "end statoshi-host"
 }
-statoshi-host
+#statoshi-host
 docker-shell(){
 echo "start docker-shell"
 echo "start docker-shell"
@@ -210,8 +215,8 @@ echo "start docker-shell"
 echo "start docker-shell"
 git clone https://github.com/RandyMcMillan/docker.shell.git ~/docker.shell && \
 cd ~/docker.shell && \
-make alpine user=root
-make alpine user=root cmd="curl -fsSL https://get.docker.com | sudo sh"
+make shell user=root
+make shell user=root cmd="curl -fsSL https://get.docker.com | sudo sh"
 echo "end docker-shell"
 echo "end docker-shell"
 echo "end docker-shell"
@@ -219,7 +224,7 @@ echo "end docker-shell"
 echo "end docker-shell"
 echo "end docker-shell"
 }
-docker-shell
+#docker-shell
 py-in-bash(){
 #!/bin/bash
 echo "start py-in-bash"
