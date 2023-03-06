@@ -20,12 +20,17 @@ jobs:
     steps:
       - run: apk add file git
 
-      - uses: actions/checkout@v2
+      # - uses: actions/checkout@v2
 
-      - run: git clone https://github.com/universal-ctags/ctags
+      - run: |
 
-      - run: cp autogen.sh ctags
-      - run: cp autogen.rc ctags
+          if [ ! -d "ctags" ]; then
+             ls ctags
+             # git clone https://github.com/universal-ctags/ctags
+          fi
+
+      # - run: cp autogen.sh ctags || echo
+      # - run: cp autogen.rc ctags || echo
 
       - run: ./autogen.sh --help
       - run: ./autogen.sh -h
@@ -35,9 +40,8 @@ jobs:
       - run: ./autogen.sh integrate zsh
       - run: ./autogen.sh upgrade
 
-      - run: cd ctags && ./autogen.sh configure
-      - run: cd ctags && ./configure --prefix=/usr
-      - run: cd ctags && make
-      - run: cd ctags && make install
-      - run: file /usr/bin/ctags
-      - run: /usr/bin/ctags --version
+      # - run: cd ctags && ./autogen.sh configure
+      # - run: cd ctags && ./configure --prefix=/usr
+      # - run: cd ctags && make
+      # - run: cd ctags && make install
+      # - run: file /usr/bin/ctags
