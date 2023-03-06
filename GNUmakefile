@@ -8,3 +8,4 @@ autogen-h:
 config:
 	@./autogen.sh configure
 -include Makefile
+-include act.mk
