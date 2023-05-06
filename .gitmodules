@@ -1,0 +1,3 @@
+[submodule "github-actions-vagrant"]
+	path = github-actions-vagrant
+	url = git@github.com:RandyMcMillan/github-actions-vagrant.git
