@@ -13,10 +13,14 @@ jobs:
     container: voidlinux/voidlinux-musl
 
     steps:
-      - run: xbps-install -Sy git file
+      - run: |
+          xbps-install -Sy xbps
+          xbps-install -Sy git file
 
       - run: git init
-      - run: git remote add origin https://github.com/${{github.repository}}
+      - run: |
+          git config --global --add safe.directory /__w/.github/.github
+          git remote add origin https://github.com/${{github.repository}}
       - run: git config --local gc.auto 0
       - run: git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +${{github.sha}}:refs/remotes/origin/master
       - run: git checkout --progress --force -B master refs/remotes/origin/master
