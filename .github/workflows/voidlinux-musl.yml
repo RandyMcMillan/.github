@@ -20,6 +20,7 @@ jobs:
       - run: git init
       - run: |
           git config --global --add safe.directory /__w/.github/.github
+          git config --global --add safe.directory /__w/leleliu008/leleliu008
           git remote add origin https://github.com/${{github.repository}}
       - run: git config --local gc.auto 0
       - run: git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin +${{github.sha}}:refs/remotes/origin/master
