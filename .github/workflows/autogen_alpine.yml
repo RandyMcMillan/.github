@@ -20,14 +20,16 @@ jobs:
     container: alpine:${{ matrix.tag }}
 
     steps:
-      - run: apk add file git make alpine-sdk autoconf
-      - run: rm -rf misc/*
+      - run: apk add file git automake alpine-sdk autoconf
+      #- run: rm -rf misc/*
 
       # - uses: actions/checkout@v2
 
       - run: |
-          ./autogen.sh configure
-          make
+          #./autogen.sh configure
+          #autoreconf -ivf || echo "did not run autoreconf..."
+          #make
+          #make config
           #autoreconf -ivf || echo "did not run autoreconf..."
 
           # make autogen-sh
