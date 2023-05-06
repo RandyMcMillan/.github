@@ -1,3 +1,10 @@
+ifeq ($(project),)
+PROJECT_NAME                            := $(notdir $(PWD))
+else
+PROJECT_NAME                            := $(project)
+endif
+export PROJECT_NAME
+
 OS                                      :=$(shell uname -s)
 export OS
 OS_VERSION                              :=$(shell uname -r)
