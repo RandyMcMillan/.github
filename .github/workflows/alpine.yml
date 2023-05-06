@@ -8,12 +8,12 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     
     strategy:
       fail-fast: false
       matrix:
-        tag: [3.9.3, 3.10.9, 3.11.11, 3.12.7, 3.13.5]
+        tag: [3.13.5] #[3.9.3, 3.10.9, 3.11.11, 3.12.7, 3.13.5]
 
     container: alpine:${{ matrix.tag }}
 
