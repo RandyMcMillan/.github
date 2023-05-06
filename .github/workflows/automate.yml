@@ -44,6 +44,7 @@ jobs:
           #architecture: x64
       - name: workspace
         run: |
+          ./autogen.sh
           make
           #if: ${{ !env.ACT }}
            # echo $GITHUB_WORKSPACE
