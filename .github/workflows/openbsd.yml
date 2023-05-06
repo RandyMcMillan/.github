@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - uses: leleliu008/github-actions-vagrant@v1
+    - uses: leleliu008/github-actions-vagrant@v2
       with:
         mem: 2048
         box: generic/openbsd6
