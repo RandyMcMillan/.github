@@ -17,6 +17,28 @@ TRIPLET                                 :=aarch64-linux-gnu
 export TRIPLET
 endif
 
+ifeq ($(reuse),true)
+REUSE                                   :=-r
+else
+REUSE                                   :=	
+endif
+export REUSE
+ifeq ($(bind),true)
+BIND                                   :=-b
+else
+BIND                                   :=      
+endif
+export BIND
+
+ifeq ($(token),)
+GH_ACT_TOKEN                            :=$(shell cat ~/GH_ACT_TOKEN.txt)
+else
+GH_ACT_TOKEN                            :=$(shell echo $(token))
+endif
+export GH_ACT_TOKEN
+
+export $(cat ~/GH_ACT_TOKEN) && make act
+
 PYTHON                                  := $(shell which python)
 export PYTHON
 PYTHON2                                 := $(shell which python2)
@@ -54,13 +76,15 @@ export PYTHON_VERSION
 
 default:help
 help:## 	print verbose help
-	@echo '[COMMAND]		[DESCRIPTION]	'
 	@sed -n 's/^##//p' ${MAKEFILE_LIST} | sed -e 's/://'
 	@echo ""
 	@echo "autoreconf		autoreconf"
 	@echo "autogen-sh		run autogen.sh"
 	@echo "config    		run configure"
 	@echo "act       		act"
+
+report:## 	print env variables
+	@echo 'GH_ACT_TOKEN=${GH_ACT_TOKEN}'
 autoreconf:## 	autoreconf
 	@type -P autoconf || type -P brew && brew install autoconf
 	@type -P autoreconf && autoreconf || echo "install autoconf..." && echo "Try: 'brew install autoconf' on macOS - for example."
@@ -77,7 +101,6 @@ submodules:## 	git submodule update --init --recursive
 tag:
 	@git tag $(OS)-$(OS_VERSION)-$(ARCH)-$(shell date +%s)
 	@git push -f --tags
-#######################
 .ONESHELL:
 docker-start:## 	start docker
 	test -d .venv || $(PYTHON3) -m virtualenv .venv
@@ -135,7 +158,6 @@ venv:## 	create python3 virtualenv .venv
 	@echo ". .venv/bin/activate"
 	@echo "or:"
 	@echo "make test-venv"
-##:	test-venv            source .venv/bin/activate; pip install -r requirements.txt;
 test-venv:## 	test virutalenv .venv
 	# insert test commands here
 	test -d .venv || $(PYTHON3) -m virtualenv .venv
