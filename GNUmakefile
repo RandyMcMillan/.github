@@ -93,7 +93,7 @@ autogen-sh:## 	autogen-sh
 	#./autogen.sh configure
 config:## 	config
 	@./autogen.sh configure
-	#@./configure
+	@./configure
 act:##	act
 	@$(MAKE) -f act.mk
 submodules:## 	git submodule update --init --recursive
