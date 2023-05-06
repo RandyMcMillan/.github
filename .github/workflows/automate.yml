@@ -25,7 +25,7 @@ jobs:
         exclude:
           - os: ubuntu-latest
             #python-version: ['2.7','3.6','3.7','3.8','3.10']
-            #python-version: ['3.10']
+            python-version: ['2.7']
           #- os: macos-latest
            # python-version: ['2.7','3.6','3.7','3.8','3.10']
           #- os: macos-10.15
