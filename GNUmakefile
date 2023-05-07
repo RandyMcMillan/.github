@@ -154,7 +154,9 @@ docker-install:## 	Download Docker.amd64.93002.dmg for MacOS Intel Compatibility
 
 .PHONY: venv
 venv:## 	create python3 virtualenv .venv
-	test -d .venv || $(PYTHON3) -m virtualenv .venv
+	test -d .venv || \
+		$(PYTHON3) -m virtualenv .venv || \
+		$(PYTHON3) -m pip install virtualenv
 	( \
 	   source .venv/bin/activate; pip install -q -r requirements.txt; \
 	   python3 -m pip install -q omegaconf \
