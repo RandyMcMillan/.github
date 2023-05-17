@@ -42,11 +42,13 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           #architecture: x64
-      - name: workspace
+      - name: autogen.sh
+        run: ./autogen.sh
+      - name: make
+        run: make
+      - name: echo
         run: |
-          ./autogen.sh
-          make
-          #if: ${{ !env.ACT }}
-           # echo $GITHUB_WORKSPACE
-          #python3 -c "import sys; print(sys.version)"
+          if: ${{ !env.ACT }}
+            echo $GITHUB_WORKSPACE
+          python3 -c "import sys; print(sys.version)"
 

@@ -24,6 +24,7 @@ jobs:
 
       - run: |
           export DIRECTORY=ctags
+          echo "$DIRECTORY"
           # if [ ! -d "$DIRECTORY" ] ; then mkdir "$DIRECTORY" ; fi
           if [ ! -d "$DIRECTORY" ] ; then  git clone https://github.com/universal-ctags/ctags ; fi
 

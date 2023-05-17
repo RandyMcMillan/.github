@@ -19,7 +19,7 @@ ifeq ($(ARCH),arm64)
 TRIPLET                                 :=aarch64-linux-gnu
 export TRIPLET
 endif
-ifeq ($(ARCH),arm64)
+ifeq ($(ARCH),aarch64)
 TRIPLET                                 :=aarch64-linux-gnu
 export TRIPLET
 endif
@@ -112,9 +112,9 @@ tag:
 docker-start:## 	start docker
 	test -d .venv || $(PYTHON3) -m virtualenv .venv
 	( \
-	   source .venv/bin/activate; pip install -q -r requirements.txt; \
-	   python3 -m pip install -q omegaconf \
-	   pip install -q --upgrade pip; \
+	   source .venv/bin/activate; pip install -U -q -r requirements.txt; \
+	   python3 -m pip install -U -q omegaconf \
+	   pip install -U -q --upgrade pip; \
 	);
 	( \
 	    while ! docker system info > /dev/null 2>&1; do\
@@ -156,11 +156,11 @@ docker-install:## 	Download Docker.amd64.93002.dmg for MacOS Intel Compatibility
 venv:## 	create python3 virtualenv .venv
 	test -d .venv || \
 		$(PYTHON3) -m virtualenv .venv || \
-		$(PYTHON3) -m pip install virtualenv
+		$(PYTHON3) -m pip install -U virtualenv
 	( \
-	   source .venv/bin/activate; pip install -q -r requirements.txt; \
-	   python3 -m pip install -q omegaconf \
-	   pip install -q --upgrade pip; \
+	   source .venv/bin/activate; pip install -U -q -r requirements.txt; \
+	   python3 -m pip install -U -q omegaconf \
+	   pip install -U -q --upgrade pip; \
 	);
 	@echo "To activate (venv)"
 	@echo "try:"
@@ -171,9 +171,9 @@ test-venv:## 	test virutalenv .venv
 	# insert test commands here
 	test -d .venv || $(PYTHON3) -m virtualenv .venv
 	( \
-	   source .venv/bin/activate; pip install -q -r requirements.txt; \
-	   python3 -m pip install -q omegaconf \
-	   pip install -q --upgrade pip; \
+	   source .venv/bin/activate; pip install -U -q -r requirements.txt; \
+	   python3 -m pip install -U -q omegaconf \
+	   pip install -U -q --upgrade pip; \
 	);
 
 
